@@ -1,10 +1,6 @@
 body {
-  /*animation: App-logo-spin infinite 20s;*/
   background: #1F618D;
-/*  background-image: url("./assets/logo_react.svg");
-  background-position: bottom -300px right -400px;
-  background-repeat: no-repeat;*/
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font-family: "Century Gothic", Futura, sans-serif;
   margin: 20px;
 }
 
@@ -32,7 +28,7 @@ ol, ul {
 
 .status {
   color: #FDFEFE;
-  font: 20px;
+  font: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -43,9 +39,6 @@ ol, ul {
   border: 0.5px solid #45B39D;
   border-radius: 10px;
   float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
   height: 180px;
   padding: 0;
   margin-left: 10px;
