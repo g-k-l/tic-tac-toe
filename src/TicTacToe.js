@@ -1,5 +1,6 @@
 import React from 'react';
-import './TicTacToe.css'
+import './TicTacToe.css';
+import {calculateWinner} from './utils.js';
 
 class Square extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,
+      winner: null
     };
   }
 
@@ -34,21 +36,36 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
+
+    if (this.state.winner) {
+      alert("Game is over!")
+      return
+    }
+
     const squares = this.state.squares.slice();
     if (this.state.squares[i] === null) {
       squares[i] = this.currentTurn();  
     } else {
       alert("Square is taken =(")
+      return
     }
+
+    const winner = calculateWinner(squares)
     
     this.setState({
       squares: squares,
-      xIsNext: !this.state.xIsNext
+      xIsNext: !this.state.xIsNext,
+      winner: winner
     });
   }
 
-  render() {
-    const status = 'Next player: '.concat(this.currentTurn());
+  render() {;
+    let status;
+    if (this.state.winner) {
+      status = "Winner: ".concat(this.state.winner);
+    } else {
+      status = 'Next player: '.concat(this.currentTurn());
+    }
 
     return (
       <div>
