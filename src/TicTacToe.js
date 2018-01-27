@@ -1,12 +1,27 @@
 import React from 'react';
 import './TicTacToe.css';
 import {calculateWinner} from './utils.js';
+import SquareRenderer from './assets/renderUtils.js'
+
+
+class Marker extends React.Component {
+  render() {
+
+      if (!this.props.src) {
+        return null
+      }
+      return (
+        <img className="marker" src={this.props.src}></img>
+      );
+  }
+}
 
 class Square extends React.Component {
   render() {
+    console.log(this.props.value)
     return (
       <button className="square" onClick={() => this.props.onClick()}>
-        {this.props.value}
+      <Marker src={this.props.value}/>
       </button>
     );
   }
@@ -25,7 +40,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square 
-        value={this.state.squares[i]}
+        value={SquareRenderer.asXO(this.state.squares[i])}
         onClick={() => this.handleClick(i)}
       />
     );
@@ -96,10 +111,6 @@ class Game extends React.Component {
       <div className="game">
         <div className="game-board">
           <Board/>
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
         </div>
       </div>
     );

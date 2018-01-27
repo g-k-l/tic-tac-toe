@@ -1,6 +1,23 @@
 body {
+  /*animation: App-logo-spin infinite 20s;*/
+  background: #1F618D;
+/*  background-image: url("./assets/logo_react.svg");
+  background-position: bottom -300px right -400px;
+  background-repeat: no-repeat;*/
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+}
+
+.bg {
+  animation: App-logo-spin infinite 20s linear;
+  background-image: url("./assets/logo_react.svg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  width: 150%;
+  height: 150%;
+  position: absolute;
+  transform-origin: bottom 55% right 55%;
+  z-index: -1;
 }
 
 ol, ul {
@@ -14,40 +31,60 @@ ol, ul {
 }
 
 .status {
-  margin-bottom: 10px;
+  color: #FDFEFE;
+  font: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  animation: square-fadein 0.3s;
+  background: #82E0AA;
+  border: 0.5px solid #45B39D;
+  border-radius: 10px;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 180px;
   padding: 0;
+  margin-left: 10px;
+  margin-top: 10px;
   text-align: center;
-  width: 34px;
+  width: 180px;
 }
 
-.square:focus {
-  outline: none;
+@keyframes square-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .kbd-navigation .square:focus {
   background: #ddd;
 }
 
+.marker {
+  margin: 30px;
+  animation: marker-fadein 0.5s;
+}
+
+@keyframes marker-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .game {
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  flex: center;
+  text-align:center;
+  justify-content: center;
 }
 
-.game-info {
-  margin-left: 20px;
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
+
+
 
