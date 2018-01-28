@@ -1,6 +1,6 @@
 import React from 'react';
 import './TicTacToe.css';
-import {calculateWinner} from './utils.js';
+import {calculateWinner, range} from './utils.js';
 import SquareRenderer from './assets/renderUtils.js'
 
 
@@ -30,17 +30,30 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(9).fill(null),
+      size: this.props.size,
+      squares: Array(this.props.size*this.props.size).fill(null),
       xIsNext: true,
       winner: null
     };
   }
 
-  renderSquare(i) {
+  renderRow(rowNumber) {
+    let rowRangeArr = range(this.state.size);
+    console.log(this.state.size);
+        console.log(rowRangeArr);
+    return (
+      <div className="boardRow">
+        {rowRangeArr.map(colNumber => this.renderSquare(rowNumber, colNumber))}
+      </div>
+    );
+  }
+
+  renderSquare(rowNumber, colNumber) {
+    const squareNumber = rowNumber*this.state.size + colNumber
     return (
       <Square 
-        value={SquareRenderer.asXO(this.state.squares[i])}
-        onClick={() => this.handleClick(i)}
+        value={SquareRenderer.asXO(this.state.squares[squareNumber])}
+        onClick={() => this.handleClick(squareNumber)}
       />
     );
   }
@@ -50,7 +63,6 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-
     if (this.state.winner) {
       alert("Game is over!")
       return
@@ -73,32 +85,19 @@ class Board extends React.Component {
     });
   }
 
-  render() {;
+  render() {
     let status;
     if (this.state.winner) {
       status = "Winner: ".concat(this.state.winner);
     } else {
       status = 'Next player: '.concat(this.currentTurn());
     }
-
+    let rangeArr = range(this.state.size);
+    console.log(rangeArr);
     return (
       <div>
         <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {rangeArr.map(rowNumber => this.renderRow(rowNumber))}
       </div>
     );
   }
@@ -112,12 +111,11 @@ class Game extends React.Component {
       size: this.props.size
     }
   }
-
   render() {
     return (
       <div className="game">
         <div className="game-board">
-          <Board/>
+          <Board size={this.state.size}/>
         </div>
       </div>
     );
@@ -142,24 +140,28 @@ class GameSetup extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({started: true});
+    if (!isNaN(this.state.size)) {
+      this.setState({started: true, size: parseInt(this.state.size)});
+    } else {
+      alert("Please enter a number >:(")
+    }
     event.preventDefault();
   }
 
   render() {
     if (this.state.started) {
-      return <Game />
+      return <Game size={this.state.size}/>
     } else {
       return (
         <div className="game-setup">
         How big is the board?
           <form onSubmit={this.handleSubmit}>
-            <div class="board-size">
-              <input class="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
+            <div className="board-size">
+              <input className="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
               by
-              <input class="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
+              <input className="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
             </div>
-            <input class="button" type="submit" value="Submit"/>
+            <input className="button" type="submit" value="Submit"/>
           </form>
         </div>
       );  

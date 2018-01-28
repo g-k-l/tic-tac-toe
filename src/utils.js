@@ -45,3 +45,9 @@ function allEqual(array) {
     return true
 }
 
+export function range(n) {
+    /*
+        Akin to Python's range(n)
+    */
+    return [...Array(n).keys()]
+}
