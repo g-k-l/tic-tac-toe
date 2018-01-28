@@ -16,12 +16,11 @@ export function calculateWinner(squares) {
     ];
 
     for (let i=0; i< lines.length; i++) {
-        if (squares.some((x) => {x === null})) {
-            continue
-        }
-
         const [a, b, c] = lines[i];
         const arr = [squares[a], squares[b], squares[c]]
+        if (arr.some((x) => { return x === null})) {
+            continue
+        }
 
         if (allEqual(arr)) {
             return squares[a]
@@ -39,7 +38,7 @@ function allEqual(array) {
         return true
     }
     for (let i=0; i<array.length-1; i++) {
-        if (array[i] != array[i+1]) {
+        if (array[i] !== array[i+1]) {
             return false
         }
     }
