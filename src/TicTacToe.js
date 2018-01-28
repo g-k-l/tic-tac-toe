@@ -104,7 +104,15 @@ class Board extends React.Component {
   }
 }
 
+
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      size: this.props.size
+    }
+  }
+
   render() {
     return (
       <div className="game">
@@ -116,5 +124,48 @@ class Game extends React.Component {
   }
 }
 
-export default Game;
+
+class GameSetup extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      started: false,
+      size: 3
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({size: event.target.value});
+  }
+
+  handleSubmit(event) {
+    this.setState({started: true});
+    event.preventDefault();
+  }
+
+  render() {
+    if (this.state.started) {
+      return <Game />
+    } else {
+      return (
+        <div className="game-setup">
+        How big is the board?
+          <form onSubmit={this.handleSubmit}>
+            <div class="board-size">
+              <input class="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
+              by
+              <input class="text-box" type="text" value={this.state.size} onChange={this.handleChange}/>
+            </div>
+            <input class="button" type="submit" value="Submit"/>
+          </form>
+        </div>
+      );  
+    }
+  }
+}
+
+export default GameSetup;
 

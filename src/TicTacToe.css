@@ -4,6 +4,42 @@ body {
   margin: 20px;
 }
 
+.game-setup form {
+  border:none;
+  margin-top: 15px;
+  
+}
+
+.game-setup input {
+  font-family: "Century Gothic", Futura, sans-serif;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  justify-content: center;
+}
+
+.game-setup .board-size {
+  font-size: 35px;
+}
+
+.game-setup .text-box {
+  font-size: 40px;
+  color: #8E44AD; 
+  margin: 0 10px;
+}
+
+.game-setup .button {
+  background-color:  #2ECC71;
+  border-radius: 10px;
+  color: white;
+  border-style: hidden;
+  height: 50px;
+  width: 100px;
+  font-size: 15px;
+  text-shadow:none;
+}
+
 .bg {
   animation: App-logo-spin infinite 20s linear;
   background-image: url("./assets/logo_react.svg");
@@ -77,6 +113,12 @@ ol, ul {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.game-setup {
+  color: white;
+  text-align:center;
+  justify-content: center;
 }
 
 
