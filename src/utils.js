@@ -4,31 +4,71 @@ export function calculateWinner(squares) {
         Returns either "X" or "O" if there is a winner.
         If there's no winner, return null.
     */
-    const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
+    const winning_rows = getRows(squares.length),
+          winning_cols = getCols(squares.length),
+          winning_diags = getDiagonals(squares.length);
+
+    const lines = winning_rows.concat(winning_cols.concat(winning_diags));
 
     for (let i=0; i< lines.length; i++) {
-        const [a, b, c] = lines[i];
-        const arr = [squares[a], squares[b], squares[c]]
+
+        var arr = lines[i].map(x=>squares[x])
         if (arr.some((x) => { return x === null})) {
             continue
         }
 
         if (allEqual(arr)) {
-            return squares[a]
+            return arr[0]
         }    
     }
 
     return null
 }
+
+function getRows(size) {
+
+    const sideLength = Math.sqrt(size);
+    var rows = Array(sideLength).fill().map(()=>Array());
+
+    for(let i=0; i<size; i++) {
+        var rowIdx = Math.floor(i/sideLength);
+        rows[rowIdx].push(i);
+    }
+
+    return rows
+}
+
+function getCols(size) {
+
+    const sideLength = Math.sqrt(size);
+    var cols = Array(sideLength).fill().map(()=>Array());
+
+    for(let i=0; i<size; i++) {
+        var colIdx = i % sideLength;
+        cols[colIdx].push(i);
+    }
+
+    return cols;
+}
+
+function getDiagonals(size) {
+    
+    const sideLength = Math.sqrt(size);
+    var diags = Array(2).fill().map(()=>Array());
+
+    for(let i=0; i<size; i++) {
+
+        if (i % (sideLength +  1) == 0) {
+            diags[0].push(i);
+        } 
+        else if (i %(sideLength - 1) == 0) {
+            diags[1].push(i);
+        }
+    }
+
+    return diags
+}
+
 
 function allEqual(array) {
     /*
