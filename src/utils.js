@@ -28,7 +28,7 @@ export function calculateWinner(squares) {
 function getRows(size) {
 
     const sideLength = Math.sqrt(size);
-    var rows = Array(sideLength).fill().map(()=>Array());
+    var rows = Array(sideLength).fill().map(()=>[]);
 
     for(let i=0; i<size; i++) {
         var rowIdx = Math.floor(i/sideLength);
@@ -41,7 +41,7 @@ function getRows(size) {
 function getCols(size) {
 
     const sideLength = Math.sqrt(size);
-    var cols = Array(sideLength).fill().map(()=>Array());
+    var cols = Array(sideLength).fill().map(()=>[]);
 
     for(let i=0; i<size; i++) {
         var colIdx = i % sideLength;
@@ -54,14 +54,14 @@ function getCols(size) {
 function getDiagonals(size) {
     
     const sideLength = Math.sqrt(size);
-    var diags = Array(2).fill().map(()=>Array());
+    var diags = Array(2).fill().map(()=>[]);
 
     for(let i=0; i<size; i++) {
 
-        if (i % (sideLength +  1) == 0) {
+        if (i % (sideLength +  1) === 0) {
             diags[0].push(i);
         } 
-        else if (i %(sideLength - 1) == 0) {
+        else if (i %(sideLength - 1) === 0) {
             diags[1].push(i);
         }
     }
