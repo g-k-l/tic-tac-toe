@@ -1,8 +1,8 @@
-import React from 'react';
-import './TicTacToe.css';
-import {calculateWinner, range} from './utils.js';
+import React from 'react'
+import './TicTacToe.css'
+import {calculateWinner, range} from './utils.js'
 import SquareRenderer from './assets/renderUtils.js'
-
+import {MAX_BOARD_SIZE} from './constants.js'
 
 class Marker extends React.Component {
   render() {
@@ -141,11 +141,21 @@ class GameSetup extends React.Component {
 
   handleSubmit(event) {
     const input_size = parseInt(this.state.size)
-    if (!isNaN(input_size)) {
-      this.setState({started: true, size: input_size});
-    } else {
+
+    if (isNaN(input_size)) {
       alert("Please enter a number >:(")
+      event.preventDefault();
+      return
     }
+    
+    if (input_size > MAX_BOARD_SIZE) {
+      alert("Board cannot be larger than " 
+        + MAX_BOARD_SIZE + " by " + MAX_BOARD_SIZE)
+      event.preventDefault();
+      return
+    }
+    
+    this.setState({started: true, size: input_size})
     event.preventDefault();
   }
 
