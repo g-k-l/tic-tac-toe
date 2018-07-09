@@ -140,8 +140,9 @@ class GameSetup extends React.Component {
   }
 
   handleSubmit(event) {
-    if (!isNaN(this.state.size)) {
-      this.setState({started: true, size: parseInt(this.state.size)});
+    const input_size = parseInt(this.state.size)
+    if (!isNaN(input_size)) {
+      this.setState({started: true, size: input_size});
     } else {
       alert("Please enter a number >:(")
     }
