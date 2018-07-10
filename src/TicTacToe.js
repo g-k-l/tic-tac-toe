@@ -2,7 +2,8 @@ import React from "react";
 import "./TicTacToe.css";
 import { calculateWinner, range } from "./utils.js";
 import SquareRenderer from "./assets/renderUtils.js";
-import { MAX_BOARD_SIZE } from "./constants.js";
+import ModalConductor from "./modals/ModalConductor.js";
+import { MAX_BOARD_SIZE, RESET_MODAL_NAME } from "./constants.js";
 
 class Marker extends React.Component {
   render() {
@@ -85,12 +86,6 @@ class Board extends React.Component {
     });
   }
 
-  handleUndoClick(event) {}
-
-  handleResetClick(event) {}
-
-  renderButtons() {}
-
   render() {
     let status;
     if (this.state.winner) {
@@ -110,25 +105,41 @@ class Board extends React.Component {
 
 class Game extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      size: this.props.size
-    }
+      size: this.props.size,
+      modalName: null,
+      modalAction: null
+    };
+    this.showGameResetModal = this.showGameResetModal.bind(this);
+  }
+
+  showGameResetModal(event) {
+    this.setState({
+      modalName: RESET_MODAL_NAME,
+      modalAction: this.props.handleGoBackToTop
+    });
   }
 
   render() {
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board size={this.state.size} />
-          <div>
-            <input className="button" type="submit" value="Undo" />
-            <input
-              className="button"
-              type="submit"
-              value="Restart"
-              onClick={this.props.handleGameReset}
-            />
+      <div>
+        <ModalConductor
+          modalName={this.state.modalName}
+          modalAction={this.state.modalAction}
+        />
+        <div className="game">
+          <div className="game-board">
+            <Board size={this.state.size} />
+            <div>
+              <input className="button" type="submit" value="Undo" />
+              <input
+                className="button"
+                type="submit"
+                value="Restart"
+                onClick={this.showGameResetModal}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -138,14 +149,14 @@ class Game extends React.Component {
 
 class GameSetup extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       started: false,
       size: 3
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.resetGame = this.resetGame.bind(this)
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.goBackToTop = this.goBackToTop.bind(this);
   }
 
   handleChange(event) {
@@ -176,13 +187,13 @@ class GameSetup extends React.Component {
     event.preventDefault();
   }
 
-  resetGame() {
+  goBackToTop() {
     this.setState({ started: false });
   }
 
   render() {
     if (this.state.started) {
-      return <Game size={this.state.size} handleGameReset={this.resetGame} />;
+      return <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />;
     } else {
       return (
         <div className="game-setup">

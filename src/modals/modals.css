@@ -1,0 +1,45 @@
+/* Notes:
+https://css-tricks.com/considerations-styling-modal/
+*/
+
+.modal {
+  background-color: #fff;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
+  position: fixed;
+  text-align: center;
+}
+
+.modal-guts {
+  font-family: "Century Gothic", Futura, sans-serif;
+  font-size: 40px;
+  margin: 15% auto;
+}
+
+.modal .button {
+  background-color: #8E44AD;
+  border-radius: 10px;
+  color: white;
+  border-style: hidden;
+  height: 50px;
+  width: 100px;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
+  padding: 50;
+}
+
