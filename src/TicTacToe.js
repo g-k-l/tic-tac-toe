@@ -36,8 +36,6 @@ class Board extends React.Component {
 
   renderRow(rowNumber) {
     let rowRangeArr = range(this.state.size);
-    console.log(this.state.size);
-    console.log(rowRangeArr);
     return (
       <div className="boardRow">
         {rowRangeArr.map(colNumber => this.renderSquare(rowNumber, colNumber))}
@@ -90,7 +88,6 @@ class Board extends React.Component {
       status = "Next player: ".concat(this.currentTurn());
     }
     let rangeArr = range(this.state.size);
-    console.log(rangeArr);
     return (
       <div>
         <div className="status">{status}</div>
@@ -98,16 +95,6 @@ class Board extends React.Component {
       </div>
     );
   }
-}
-
-class ResetButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // render() {
-
-  // }
 }
 
 class Game extends React.Component {
