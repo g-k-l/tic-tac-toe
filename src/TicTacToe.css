@@ -104,13 +104,7 @@ ol, ul {
   to { opacity: 1; }
 }
 
-.game {
-  display: flex;
-  text-align:center;
-  justify-content: center;
-}
-
-.game-options .button {
+.game .button {
   background-color: #8E44AD;
   border-radius: 10px;
   color: white;
@@ -120,6 +114,12 @@ ol, ul {
   font-size: 15px;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+.game {
+  display: flex;
+  text-align:center;
+  justify-content: center;
 }
 
 .game-options {

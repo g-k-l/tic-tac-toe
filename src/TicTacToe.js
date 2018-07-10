@@ -29,6 +29,7 @@ class Board extends React.Component {
     this.state = {
       size: this.props.size,
       squares: Array(this.props.size * this.props.size).fill(null),
+      history: [],
       xIsNext: true,
       winner: null
     };
@@ -63,9 +64,12 @@ class Board extends React.Component {
       return;
     }
 
+    var updated_history = this.state.history.slice();
+
     const squares = this.state.squares.slice();
     if (this.state.squares[i] === null) {
       squares[i] = this.currentTurn();
+      updated_history.push(i);
     } else {
       alert("Square is taken =(");
       return;
@@ -75,10 +79,17 @@ class Board extends React.Component {
 
     this.setState({
       squares: squares,
+      history: updated_history,
       xIsNext: !this.state.xIsNext,
       winner: winner
     });
   }
+
+  handleUndoClick(event) {}
+
+  handleResetClick(event) {}
+
+  renderButtons() {}
 
   render() {
     let status;
@@ -99,22 +110,26 @@ class Board extends React.Component {
 
 class Game extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       size: this.props.size
-    };
+    }
   }
+
   render() {
     return (
-      <div>
-        <div className="game">
-          <div className="game-board">
-            <Board size={this.state.size} />
+      <div className="game">
+        <div className="game-board">
+          <Board size={this.state.size} />
+          <div>
+            <input className="button" type="submit" value="Undo" />
+            <input
+              className="button"
+              type="submit"
+              value="Restart"
+              onClick={this.props.handleGameReset}
+            />
           </div>
-        </div>
-        <div className="game-options">
-          <input className="button" type="submit" value="Undo" />
-          <input className="button" type="submit" value="Restart" />
         </div>
       </div>
     );
@@ -123,13 +138,14 @@ class Game extends React.Component {
 
 class GameSetup extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       started: false,
       size: 3
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
 
   handleChange(event) {
@@ -160,13 +176,17 @@ class GameSetup extends React.Component {
     event.preventDefault();
   }
 
+  resetGame() {
+    this.setState({ started: false });
+  }
+
   render() {
     if (this.state.started) {
-      return <Game size={this.state.size} />;
+      return <Game size={this.state.size} handleGameReset={this.resetGame} />;
     } else {
       return (
         <div className="game-setup">
-          How big is the board?
+          Please Select the Board Size
           <form onSubmit={this.handleSubmit}>
             <div className="board-size">
               <input
