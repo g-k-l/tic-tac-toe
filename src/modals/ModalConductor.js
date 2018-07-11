@@ -15,9 +15,19 @@ class ModalConductor extends React.Component {
   render() {
     switch (this.props.modalName) {
       case SET_ICONS_MODAL_NAME:
-        return <SetIconsModal modalAction={this.props.modalAction}/>;
+        return (
+          <SetIconsModal
+            modalAction={this.props.modalAction}
+            hideModal={this.props.hideModal}
+          />
+        );
       case RESET_MODAL_NAME:
-        return <ResetModal modalAction={this.props.modalAction}/>;
+        return (
+          <ResetModal
+            modalAction={this.props.modalAction}
+            hideModal={this.props.hideModal}
+          />
+        );
       default:
         return null;
     }
@@ -26,7 +36,25 @@ class ModalConductor extends React.Component {
 
 class SetIconsModal extends React.Component {
   render() {
-    return;
+    return (
+      <div className="backdrop">
+        <div className="modal">
+          <div className="modal-guts">Here are the icons</div>
+          <input
+            className="button"
+            type="submit"
+            value="Yes"
+            onClick={this.props.modalAction}
+          />
+          <input
+            className="button"
+            type="submit"
+            value="No"
+            onClick={this.props.hideModal}
+          />
+        </div>
+      </div>
+    );
   }
 }
 
@@ -42,7 +70,12 @@ class ResetModal extends React.Component {
             value="Yes"
             onClick={this.props.modalAction}
           />
-          <input className="button" type="submit" value="No" onClick="" />
+          <input
+            className="button"
+            type="submit"
+            value="No"
+            onClick={this.props.hideModal}
+          />
         </div>
       </div>
     );

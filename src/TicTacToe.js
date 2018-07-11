@@ -24,6 +24,19 @@ class Square extends React.Component {
   }
 }
 
+class OptionButton extends React.Component {
+  render() {
+    return (
+      <input
+        className="button"
+        type="submit"
+        value={this.props.name}
+        onClick={this.props.handleClick}
+      />
+    );
+  }
+}
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -34,6 +47,7 @@ class Board extends React.Component {
       xIsNext: true,
       winner: null
     };
+    this.handleUndo = this.handleUndo.bind(this);
   }
 
   renderRow(rowNumber) {
@@ -77,12 +91,26 @@ class Board extends React.Component {
     }
 
     const winner = calculateWinner(squares);
-
     this.setState({
       squares: squares,
       history: updated_history,
       xIsNext: !this.state.xIsNext,
       winner: winner
+    });
+  }
+
+  handleUndo(event) {
+    var current_history = this.state.history.slice();
+    const updated_history = this.state.history.slice(0, -1);
+
+    const square_to_unset = current_history.pop();
+    const squares = this.state.squares.slice();
+    squares[square_to_unset] = null;
+
+    this.setState({
+      squares: squares,
+      history: updated_history,
+      xIsNext: !this.state.xIsNext
     });
   }
 
@@ -98,6 +126,10 @@ class Board extends React.Component {
       <div>
         <div className="status">{status}</div>
         {rangeArr.map(rowNumber => this.renderRow(rowNumber))}
+        <div>
+          <OptionButton handleClick={this.handleUndo} name="Undo" />
+          <OptionButton handleClick={this.props.handleRestart} name="Restart" />
+        </div>
       </div>
     );
   }
@@ -112,6 +144,7 @@ class Game extends React.Component {
       modalAction: null
     };
     this.showGameResetModal = this.showGameResetModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   showGameResetModal(event) {
@@ -121,25 +154,27 @@ class Game extends React.Component {
     });
   }
 
+  hideModal(event) {
+    this.setState({
+      modalName: null,
+      modalAction: null
+    });
+  }
+
   render() {
     return (
       <div>
         <ModalConductor
           modalName={this.state.modalName}
           modalAction={this.state.modalAction}
+          hideModal={this.hideModal}
         />
         <div className="game">
           <div className="game-board">
-            <Board size={this.state.size} />
-            <div>
-              <input className="button" type="submit" value="Undo" />
-              <input
-                className="button"
-                type="submit"
-                value="Restart"
-                onClick={this.showGameResetModal}
-              />
-            </div>
+            <Board
+              size={this.state.size}
+              handleRestart={this.showGameResetModal}
+            />
           </div>
         </div>
       </div>
@@ -193,7 +228,9 @@ class GameSetup extends React.Component {
 
   render() {
     if (this.state.started) {
-      return <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />;
+      return (
+        <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+      );
     } else {
       return (
         <div className="game-setup">
