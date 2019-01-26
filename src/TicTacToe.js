@@ -64,6 +64,7 @@ class Board extends React.Component {
     const squareNumber = rowNumber * this.state.size + colNumber;
     return (
       <Square
+        key={squareNumber}
         value={SquareRenderer.renderValue(this.state.squares[squareNumber])}
         onClick={() => this.handleClick(squareNumber)}
       />
@@ -298,7 +299,7 @@ class GameSetup extends React.Component {
               />
             </div>
             <input className="button" type="submit" value="Submit" />
-            <input className="button" onClick={this.showSetIconsModal} value="Set Icons" />
+            <input className="button" onClick={this.showSetIconsModal} value="Set Icons" readOnly />
           </form>
         </div>
       );
