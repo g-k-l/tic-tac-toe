@@ -80,7 +80,8 @@ class SetIconsModal extends React.Component {
         class_name = 'marker marker-selected';
       else
         class_name = 'marker';
-      return (<img className={class_name} 
+      return (<img key={marker.icons}
+        className={class_name} 
         onClick={((event) => this.selectIcon(marker.icons))} 
         src={marker.src}
         alt={marker.icons}/>)

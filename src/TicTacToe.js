@@ -54,7 +54,7 @@ class Board extends React.Component {
   renderRow(rowNumber) {
     let rowRangeArr = range(this.state.size);
     return (
-      <div className="boardRow">
+      <div key={rowNumber} className="boardRow">
         {rowRangeArr.map(colNumber => this.renderSquare(rowNumber, colNumber))}
       </div>
     );
