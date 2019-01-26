@@ -47,6 +47,7 @@ function isX(player) {
 
 
 export default {
+	"renderValue": asXO, // default to asXO
 	"asXO": asXO,
 	"asPhpHack": asPhpHack,
 	"asReactAngular": asReactAngular

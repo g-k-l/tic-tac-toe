@@ -10,7 +10,8 @@ class Marker extends React.Component {
     if (!this.props.src) {
       return null;
     }
-    return <img className="marker" src={this.props.src} />;
+    return <img className="marker" src={this.props.src}
+     alt="This square is taken!"/>;
   }
 }
 
@@ -63,7 +64,7 @@ class Board extends React.Component {
     const squareNumber = rowNumber * this.state.size + colNumber;
     return (
       <Square
-        value={SquareRenderer.asXO(this.state.squares[squareNumber])}
+        value={SquareRenderer.renderValue(this.state.squares[squareNumber])}
         onClick={() => this.handleClick(squareNumber)}
       />
     );
@@ -191,11 +192,17 @@ class GameSetup extends React.Component {
     super(props);
     this.state = {
       started: false,
-      size: 3
+      size: 3,
+      modalName: null,
+      modalAction: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.goBackToTop = this.goBackToTop.bind(this);
+
+    this.handleSetIcons = this.handleSetIcons.bind(this);
+    this.showSetIconsModal = this.showSetIconsModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   handleChange(event) {
@@ -203,7 +210,7 @@ class GameSetup extends React.Component {
   }
 
   handleSubmit(event) {
-    const input_size = parseInt(this.state.size);
+    const input_size = parseInt(this.state.size, 10);
 
     if (isNaN(input_size)) {
       alert("Please enter a number >:(");
@@ -230,6 +237,36 @@ class GameSetup extends React.Component {
     this.setState({ started: false });
   }
 
+  handleSetIcons(icons) {
+    switch (icons){
+      case "xo":
+        SquareRenderer.renderValue = SquareRenderer.asXO;
+        break;
+      case "phphack":
+        SquareRenderer.renderValue = SquareRenderer.asPhpHack;
+        break;
+      case "reactangular":
+        SquareRenderer.renderValue = SquareRenderer.asReactAngular;
+        break;
+      default:
+        SquareRenderer.renderValue = SquareRenderer.asXO;
+    }
+  }
+
+  showSetIconsModal(event) {
+    this.setState({
+      modalName: "SET_ICONS",
+      modalAction: this.handleSetIcons
+    });
+  }
+
+  hideModal(event) {
+    this.setState({
+      modalName: null,
+      modalAction: null
+    });
+  }
+
   render() {
     if (this.state.started) {
       return (
@@ -238,6 +275,11 @@ class GameSetup extends React.Component {
     } else {
       return (
         <div className="game-setup">
+        <ModalConductor
+          modalName={this.state.modalName}
+          modalAction={this.state.modalAction}
+          hideModal={this.hideModal}
+        />
           Please Select the Board Size
           <form onSubmit={this.handleSubmit}>
             <div className="board-size">
@@ -256,6 +298,7 @@ class GameSetup extends React.Component {
               />
             </div>
             <input className="button" type="submit" value="Submit" />
+            <input className="button" onClick={this.showSetIconsModal} value="Set Icons" />
           </form>
         </div>
       );
