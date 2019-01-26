@@ -34,7 +34,6 @@ function getRows(size) {
         var rowIdx = Math.floor(i/sideLength);
         rows[rowIdx].push(i);
     }
-
     return rows
 }
 
@@ -47,7 +46,6 @@ function getCols(size) {
         var colIdx = i % sideLength;
         cols[colIdx].push(i);
     }
-
     return cols;
 }
 
@@ -55,17 +53,17 @@ function getDiagonals(size) {
     
     const sideLength = Math.sqrt(size);
     var diags = Array(2).fill().map(()=>[]);
-
     for(let i=0; i<size; i++) {
 
         if (i % (sideLength +  1) === 0) {
             diags[0].push(i);
-        } 
-        else if (i %(sideLength - 1) === 0) {
+        }
+    }
+    for(let i=sideLength-1; i<size-1; i++){
+        if (i %(sideLength - 1) === 0) {
             diags[1].push(i);
         }
     }
-
     return diags
 }
 
