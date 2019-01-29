@@ -9,11 +9,11 @@
     "serve": "^10.1.1"
   },
   "scripts": {
-    "prod": "serve -s build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "react-scripts build"
   },
   "browserslist": [
     ">0.2%",
