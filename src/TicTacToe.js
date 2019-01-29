@@ -105,6 +105,8 @@ class Board extends React.Component {
     if (this.state.winner) {
       alert("Game is over!");
       return;
+    } else if (this.state.history.length === 0) {
+      alert("No history to undo =\\")
     }
     var current_history = this.state.history.slice();
     const updated_history = this.state.history.slice(0, -1);
