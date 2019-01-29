@@ -49,6 +49,7 @@ https://css-tricks.com/considerations-styling-modal/
   background-color: #8E44AD;
   color: white;
   border-style: hidden;
+  border-radius: 10px;
   height: 50px;
   width: 100px;
   font-size: 15px;
