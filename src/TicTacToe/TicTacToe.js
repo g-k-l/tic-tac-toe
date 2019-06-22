@@ -273,36 +273,48 @@ class GameSetup extends React.Component {
   render() {
     if (this.state.started) {
       return (
-        <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+        <div>
+          <div className="game-header">
+            <h1>Tic-Tac-Toe</h1>
+          </div>
+          <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+        </div>
       );
     } else {
       return (
-        <div className="game-setup">
-        <ModalConductor
-          modalName={this.state.modalName}
-          modalAction={this.state.modalAction}
-          hideModal={this.hideModal}
-        />
-          Please Select the Board Size
-          <form onSubmit={this.handleSubmit}>
-            <div className="board-size">
-              <input
-                className="text-box"
-                type="text"
-                value={this.state.size}
-                onChange={this.handleChange}
-              />
-              by
-              <input
-                className="text-box"
-                type="text"
-                value={this.state.size}
-                onChange={this.handleChange}
-              />
+        <div>
+          <div className="game-header">
+              <h1>Tic-Tac-Toe</h1>
             </div>
-            <input className="button" type="submit" value="Submit" />
-            <input className="button" onClick={this.showSetIconsModal} value="Set Icons" readOnly />
-          </form>
+          <div className="game">
+            <div className="game-setup">
+              <ModalConductor
+                modalName={this.state.modalName}
+                modalAction={this.state.modalAction}
+                hideModal={this.hideModal}
+              />
+              Please Select the Board Size
+              <form onSubmit={this.handleSubmit}>
+                <div className="board-size">
+                  <input
+                    className="text-box"
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                  />
+                  by
+                  <input
+                    className="text-box"
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <input className="button" type="submit" value="Submit" />
+                <input className="button" onClick={this.showSetIconsModal} value="Set Icons" readOnly />
+              </form>
+            </div>
+          </div>
         </div>
       );
     }
