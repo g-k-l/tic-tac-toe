@@ -1,7 +1,10 @@
 const path = require("path");
 const express = require("express");
 const app = express();
-const port = 3001;
+require("dotenv").config()
+
+const PORT = process.env.SERVER_PORT | 3001;
+const REDDIT_SECRET = process.env.REDDIT_SECRET;
 
 
 APIRouter = express.Router();
@@ -30,4 +33,4 @@ FallthroughRouter.get("/*", (req, res) => {
 app.use(FallthroughRouter);
 
 
-app.listen(port, () => console.log("Server is running..."));
+app.listen(PORT, () => console.log("Server is running..."));
