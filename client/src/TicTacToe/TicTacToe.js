@@ -132,12 +132,12 @@ class Board extends React.Component {
     if (this.state.winner) {
       status = "Winner: ".concat(this.state.winner);
     } else {
-      status = "Next player: ".concat(this.currentTurn());
+      status = "Next: ".concat(this.currentTurn());
     }
     let rangeArr = range(this.state.size);
     return (
       <div>
-        <div className="status">{status}</div>
+        <div>{status}</div>
         {rangeArr.map(rowNumber => this.renderRow(rowNumber))}
         <div>
           <OptionButton handleClick={this.handleUndo} name="Undo" />
@@ -298,24 +298,23 @@ class GameSetup extends React.Component {
                 modalAction={this.state.modalAction}
                 hideModal={this.hideModal}
               />
-              Please Select the Board Size
               <form onSubmit={this.handleSubmit}>
                 <div className="board-size">
                   <input
-                    className="text-box"
+                    className="size-box"
                     type="text"
                     value={this.state.size}
                     onChange={this.handleChange}
                   />
                   by
                   <input
-                    className="text-box"
+                    className="size-box"
                     type="text"
                     value={this.state.size}
                     onChange={this.handleChange}
                   />
                 </div>
-                <input className="button" type="submit" value="Submit" />
+                <input className="button" type="submit" value="Play" />
                 <input
                   className="button"
                   onClick={this.showSetIconsModal}
