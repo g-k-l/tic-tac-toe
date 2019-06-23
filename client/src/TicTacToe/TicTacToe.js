@@ -287,7 +287,7 @@ class GameSetup extends React.Component {
     } else {
       return (
         <div className="tic-tac-toe">
-          <div class="bg"></div>
+          <div className="bg"></div>
           <div className="game-header">
             <h1>Tic-Tac-Toe</h1>
           </div>

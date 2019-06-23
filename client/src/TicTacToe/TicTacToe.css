@@ -5,6 +5,7 @@
 }
 
 .tic-tac-toe {
+  animation: fadein 0.5s;
   text-align: center;
 }
 
@@ -14,7 +15,7 @@
   color: white;
   border-style: hidden;
   height: 50px;
-  width: 110px;
+  width: 100px;
   font-size: 15px;
 }
 
@@ -23,18 +24,18 @@
   background-image: url("./assets/logo_react_bg.svg");
   background-position: bottom right;
   background-repeat: no-repeat;
-  width: 150%;
-  height: 150%;
+  width: 130%;
+  height: 130%;
+  max-width: 900px;
+  max-height: 1200px;
   position: absolute;
-  transform-origin: bottom 55% right 55%;
   z-index: -1;
 }
 
 .game-header {
-  font-size: 25px;
-  margin-top: 100px;
+  font-size: 20px;
+  margin-top: 50px;
 }
-
 
 .game-setup .size-box {
   font-size: 30px;
@@ -44,34 +45,24 @@
 
 .game {
   display: flex;
-  font-size: 18px;
+  font-size: 16px;
   justify-content: center;
 }
 
-@keyframes square-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 .square {
-  animation: square-fadein 0.3s;
+  animation: fadein 0.5s;
   background: #82E0AA;
   border: 0.5px solid #45B39D;
   border-radius: 10px;
   float: left;
-  height: 150px;
+  height: 120px;
   padding: 0;
-  margin: 8px;
-  width: 150px;
-}
-
-@keyframes marker-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  margin: 6px;
+  width: 120px;
 }
 
 .marker {
-  margin: 30px;
-  animation: marker-fadein 0.5s;
+  margin: 25px;
+  animation: fadein 0.5s;
 }
 

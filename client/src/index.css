@@ -1,25 +1,34 @@
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 body {
-	font-family: "Century Gothic", Futura, serif;
-	letter-spacing: 1px;
+    animation: fadein 1s;
+    font-family: "Century Gothic", Futura, serif;
+    letter-spacing: 0.5px;
+    max-width: 900px;
 }
 
 input {
-	font-family: "Century Gothic", Futura, serif;
-	text-align: center;
-	margin: 20px 15px 0px 15px;
+    font-family: "Century Gothic", Futura, serif;
+    text-align: center;
+    margin: 15px 10px 0px 10px;
 }
 
 ul {
-	padding: 0;
+    padding: 0;
 }
 
 li {
-	display: inline;
-	padding-right: 20px;
-	text-decoration: none;
+    display: inline;
+    padding-right: 20px;
 }
 
-nav a:visited {
-	color: black;
-	text-decoration: none;
+nav a {
+    color: black;
+}
+
+h2 a {
+    text-decoration: none;
 }
