@@ -16,6 +16,7 @@ input {
 
 .tic-tac-toe {
   text-align: center;
+  font-size: 15px;
 }
 
 .tic-tac-toe .button {
@@ -23,9 +24,9 @@ input {
   border-radius: 10px;
   color: white;
   border-style: hidden;
-  height: 60px;
-  width: 130px;
-  font-size: 18px;
+  height: 50px;
+  width: 110px;
+  font-size: 15px;
 }
 
 .bg {
@@ -41,13 +42,10 @@ input {
 }
 
 .game-header {
-  font-size: 40px;
-  margin: 0px;
+  font-size: 25px;
+  margin-top: 100px;
 }
 
-.board-size {
-  font-size: 30px;
-}
 
 .game-setup .size-box {
   font-size: 30px;
@@ -57,7 +55,7 @@ input {
 
 .game {
   display: flex;
-  font-size: 25px;
+  font-size: 20px;
   justify-content: center;
 }
 
@@ -72,10 +70,10 @@ input {
   border: 0.5px solid #45B39D;
   border-radius: 10px;
   float: left;
-  height: 200px;
+  height: 180px;
   padding: 0;
   margin: 10px;
-  width: 200px;
+  width: 180px;
 }
 
 @keyframes marker-fadein {

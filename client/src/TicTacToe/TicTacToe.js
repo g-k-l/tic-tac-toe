@@ -132,7 +132,7 @@ class Board extends React.Component {
     if (this.state.winner) {
       status = "Winner: ".concat(this.state.winner);
     } else {
-      status = "Next: ".concat(this.currentTurn());
+      status = "Next Player: ".concat(this.currentTurn());
     }
     let rangeArr = range(this.state.size);
     return (
