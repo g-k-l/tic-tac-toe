@@ -1,25 +1,8 @@
-.game {
-  text-align: center;
-  justify-content: center;
-}
-
-.game-header {
-  text-align: center;
-  font-size: 30px;
-  height: 150px;
-  padding: 30px;
-  color: white;
-}
 
 body {
   background: #1F618D;
   font-family: "Century Gothic", Futura, sans-serif;
   margin: 20px;
-}
-
-.game-setup form {
-  border:none;
-  margin-top: 15px;
 }
 
 input {
@@ -30,18 +13,13 @@ input {
   margin: 15px auto;
 }
 
-.game-setup .board-size {
-  font-size: 35px;
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.game-setup .text-box {
-  font-size: 40px;
-  color: #8E44AD; 
-  margin: 0 10px;
-}
-
-.game-setup .button {
-  background-color:  #2ECC71;
+.tic-tac-toe .button {
+  background-color: #8E44AD;
   border-radius: 10px;
   color: white;
   border-style: hidden;
@@ -50,11 +28,6 @@ input {
   font-size: 15px;
   margin-left: 5px;
   margin-right: 5px;
-}
-
-.game-setup {
-  color: white;
-  text-align:center;
 }
 
 .bg {
@@ -69,14 +42,37 @@ input {
   z-index: -1;
 }
 
-ol, ul {
-  padding-left: 30px;
+.game-header {
+  text-align: center;
+  font-size: 30px;
+  height: 150px;
+  padding: 30px;
+  color: white;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+.game-setup {
+  color: white;
+  text-align:center;
+}
+
+.game-setup form {
+  margin-top: 15px;
+}
+
+.game-setup .board-size {
+  font-size: 35px;
+}
+
+.game-setup .text-box {
+  font-size: 40px;
+  color: #8E44AD; 
+  margin: 0 10px;
+}
+
+.game {
+  display: flex;
+  text-align:center;
+  justify-content: center;
 }
 
 .status {
@@ -84,6 +80,11 @@ ol, ul {
   font: 4px;
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+@keyframes square-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .square {
@@ -99,53 +100,14 @@ ol, ul {
   width: 180px;
 }
 
-@keyframes square-fadein {
+@keyframes marker-fadein {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
 }
 
 .marker {
   margin: 30px;
   animation: marker-fadein 0.5s;
 }
-
-@keyframes marker-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.game .button {
-  background-color: #8E44AD;
-  border-radius: 10px;
-  color: white;
-  border-style: hidden;
-  height: 50px;
-  width: 100px;
-  font-size: 15px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.game {
-  display: flex;
-  text-align:center;
-  justify-content: center;
-}
-
-.game-options {
-  display:flex;
-  text-align:center;
-  justify-content:center;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 
 

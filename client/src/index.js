@@ -14,20 +14,6 @@ const AppRouter = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/tic-tac-toe/">TicTacToe</Link>
-            </li>
-            <li>
-              <Link to="/multitaskit/">Multitaskit</Link>
-            </li>
-          </ul>
-        </nav>
-        <Route path="/" exact component={App} />
         <Route path="/tic-tac-toe/" component={GameSetup} />
         <Route path="/multitaskit/" component={Multitaskit} />
       </div>

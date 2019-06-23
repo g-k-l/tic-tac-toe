@@ -183,12 +183,10 @@ class Game extends React.Component {
           hideModal={this.hideModal}
         />
         <div className="game">
-          <div className="game-board">
-            <Board
-              size={this.state.size}
-              handleRestart={this.showGameResetModal}
-            />
-          </div>
+          <Board
+            size={this.state.size}
+            handleRestart={this.showGameResetModal}
+          />
         </div>
       </div>
     );
@@ -278,7 +276,8 @@ class GameSetup extends React.Component {
   render() {
     if (this.state.started) {
       return (
-        <div>
+        <div className="tic-tac-toe">
+          <div class="bg"></div>
           <div className="game-header">
             <h1>Tic-Tac-Toe</h1>
           </div>
@@ -287,11 +286,12 @@ class GameSetup extends React.Component {
       );
     } else {
       return (
-        <div>
+        <div className="tic-tac-toe">
+          <div class="bg"></div>
           <div className="game-header">
             <h1>Tic-Tac-Toe</h1>
           </div>
-          <div className="game">
+          <div>
             <div className="game-setup">
               <ModalConductor
                 modalName={this.state.modalName}
