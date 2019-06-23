@@ -1,0 +1,25 @@
+body {
+	font-family: "Century Gothic", Futura, serif;
+	letter-spacing: 1px;
+}
+
+input {
+	font-family: "Century Gothic", Futura, serif;
+	text-align: center;
+	margin: 20px 15px 0px 15px;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	display: inline;
+	padding-right: 20px;
+	text-decoration: none;
+}
+
+nav a:visited {
+	color: black;
+	text-decoration: none;
+}

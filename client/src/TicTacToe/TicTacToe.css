@@ -1,14 +1,4 @@
 
-body {
-  font-family: "Century Gothic", Futura, serif;
-}
-
-input {
-  font-family: "Century Gothic", Futura, serif;
-  text-align: center;
-  margin: 20px 15px 0px 15px;
-}
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -16,7 +6,6 @@ input {
 
 .tic-tac-toe {
   text-align: center;
-  font-size: 15px;
 }
 
 .tic-tac-toe .button {
@@ -55,7 +44,7 @@ input {
 
 .game {
   display: flex;
-  font-size: 20px;
+  font-size: 18px;
   justify-content: center;
 }
 
@@ -70,10 +59,10 @@ input {
   border: 0.5px solid #45B39D;
   border-radius: 10px;
   float: left;
-  height: 180px;
+  height: 150px;
   padding: 0;
-  margin: 10px;
-  width: 180px;
+  margin: 8px;
+  width: 150px;
 }
 
 @keyframes marker-fadein {
