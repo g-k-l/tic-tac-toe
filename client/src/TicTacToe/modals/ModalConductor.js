@@ -5,7 +5,6 @@ import XLogo from "../assets/logo_x.svg";
 import hackLogo from "../assets/logo_hack.svg";
 import reactLogo from "../assets/logo_react.svg";
 
-
 /* Notes:
 https://daveceddia.com/open-modal-in-react/
 https://codeburst.io/modals-in-react-f6c3ff9f4701
@@ -56,7 +55,7 @@ class SetIconsModal extends React.Component {
   selectIcon(icons) {
     this.setState({
       icons: icons
-    })
+    });
   }
 
   renderMarkers() {
@@ -74,30 +73,33 @@ class SetIconsModal extends React.Component {
         src: reactLogo
       }
     ];
-    return markers.map((marker) => {
+    return markers.map(marker => {
       var class_name;
       if (marker.icons === this.state.icons)
-        class_name = 'marker marker-selected';
-      else
-        class_name = 'marker';
-      return (<img key={marker.icons}
-        className={class_name} 
-        onClick={((event) => this.selectIcon(marker.icons))} 
-        src={marker.src}
-        alt={marker.icons}/>)
-    })
+        class_name = "marker marker-selected";
+      else class_name = "marker";
+      return (
+        <img
+          key={marker.icons}
+          className={class_name}
+          onClick={event => this.selectIcon(marker.icons)}
+          src={marker.src}
+          alt={marker.icons}
+        />
+      );
+    });
   }
 
-  iconsNameToDisplayName(icons){
-    switch (icons){
+  iconsNameToDisplayName(icons) {
+    switch (icons) {
       case "xo":
-        return "X's & O's"
+        return "X's & O's";
       case "phphack":
-        return "PHP & Hack"
+        return "PHP & Hack";
       case "reactangular":
-        return "React & Angular"
+        return "React & Angular";
       default:
-        return "X's & O's"
+        return "X's & O's";
     }
   }
 
@@ -105,10 +107,10 @@ class SetIconsModal extends React.Component {
     return (
       <div className="backdrop">
         <div className="modal">
-        <div className="modal-info">{this.iconsNameToDisplayName(this.state.icons)}</div>
-          <div className="modal-guts">
-            {this.renderMarkers()}
+          <div className="modal-info">
+            {this.iconsNameToDisplayName(this.state.icons)}
           </div>
+          <div className="modal-guts">{this.renderMarkers()}</div>
           <div>
             <input
               className="button"

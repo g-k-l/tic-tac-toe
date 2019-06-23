@@ -10,8 +10,13 @@ class Marker extends React.Component {
     if (!this.props.src) {
       return null;
     }
-    return <img className="marker" src={this.props.src}
-     alt="This square is taken!"/>;
+    return (
+      <img
+        className="marker"
+        src={this.props.src}
+        alt="This square is taken!"
+      />
+    );
   }
 }
 
@@ -106,7 +111,7 @@ class Board extends React.Component {
       alert("Game is over!");
       return;
     } else if (this.state.history.length === 0) {
-      alert("No history to undo =\\")
+      alert("No history to undo =\\");
     }
     var current_history = this.state.history.slice();
     const updated_history = this.state.history.slice(0, -1);
@@ -197,7 +202,7 @@ class GameSetup extends React.Component {
       started: false,
       size: 3,
       modalName: null,
-      modalAction: null,
+      modalAction: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -241,7 +246,7 @@ class GameSetup extends React.Component {
   }
 
   handleSetIcons(icons) {
-    switch (icons){
+    switch (icons) {
       case "xo":
         SquareRenderer.renderValue = SquareRenderer.asXO;
         break;
@@ -284,8 +289,8 @@ class GameSetup extends React.Component {
       return (
         <div>
           <div className="game-header">
-              <h1>Tic-Tac-Toe</h1>
-            </div>
+            <h1>Tic-Tac-Toe</h1>
+          </div>
           <div className="game">
             <div className="game-setup">
               <ModalConductor
@@ -311,7 +316,12 @@ class GameSetup extends React.Component {
                   />
                 </div>
                 <input className="button" type="submit" value="Submit" />
-                <input className="button" onClick={this.showSetIconsModal} value="Set Icons" readOnly />
+                <input
+                  className="button"
+                  onClick={this.showSetIconsModal}
+                  value="Set Icons"
+                  readOnly
+                />
               </form>
             </div>
           </div>
