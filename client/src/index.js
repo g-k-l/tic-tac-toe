@@ -15,7 +15,7 @@ const AppRouter = () => {
     <Router>
       <div>
         <Route path="/tic-tac-toe/" component={GameSetup} />
-        <Route path="/multitaskit/" component={Multitaskit} />
+        <Route path="/multi/" component={Multitaskit} />
       </div>
     </Router>
   );
