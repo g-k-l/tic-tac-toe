@@ -7,6 +7,7 @@
 .tic-tac-toe {
   animation: fadein 0.5s;
   text-align: center;
+  margin: 0 auto;
 }
 
 .tic-tac-toe .button {
@@ -31,7 +32,7 @@
   background-position: bottom right;
   background-repeat: no-repeat;
   width: 130%;
-  height: 130%;
+  height: 80%;
   max-width: 900px;
   max-height: 1200px;
   position: absolute;

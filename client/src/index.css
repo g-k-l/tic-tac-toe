@@ -7,7 +7,6 @@ body {
     animation: fadein 1s;
     font-family: "Century Gothic", Futura, serif;
     letter-spacing: 0.5px;
-    max-width: 900px;
 }
 
 input {
@@ -31,4 +30,10 @@ nav a {
 
 h2 a {
     text-decoration: none;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 900px;
+    max-height: 700px;
 }

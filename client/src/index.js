@@ -45,12 +45,9 @@ const AppRouter = () => {
           <li>
             <Link to="/multi/">Multitaskit</Link>
           </li>
-          <li>
-            <a href="http://math-genie.herokuapp.com">Genealogy</a>
-          </li>
         </ul>
       </nav>
-      <div>
+      <div className="content">
         <Route path="/" exact component={App} />
         <Route path="/about/" exact component={About} />
         <Route path="/tic-tac-toe/" component={GameSetup} />
