@@ -203,7 +203,7 @@ class GameSetup extends React.Component {
       modalAction: null
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.goBackToTop = this.goBackToTop.bind(this);
 
     this.handleSetIcons = this.handleSetIcons.bind(this);
@@ -215,12 +215,11 @@ class GameSetup extends React.Component {
     this.setState({ size: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleStart() {
     const input_size = parseInt(this.state.size, 10);
 
     if (isNaN(input_size)) {
       alert("Please enter a number >:(");
-      event.preventDefault();
       return;
     }
 
@@ -231,12 +230,10 @@ class GameSetup extends React.Component {
           " by " +
           MAX_BOARD_SIZE
       );
-      event.preventDefault();
       return;
     }
 
     this.setState({ started: true, size: input_size });
-    event.preventDefault();
   }
 
   goBackToTop() {
@@ -298,7 +295,6 @@ class GameSetup extends React.Component {
                 modalAction={this.state.modalAction}
                 hideModal={this.hideModal}
               />
-              <form onSubmit={this.handleSubmit}>
                 <div className="board-size">
                   <input
                     className="size-box"
@@ -314,14 +310,18 @@ class GameSetup extends React.Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <input className="button" type="submit" value="Play" />
                 <input
                   className="button"
+                  type="submit"
+                  onClick={this.handleStart}
+                  value="Play" />
+                <input
+                  className="button"
+                  type="submit"
                   onClick={this.showSetIconsModal}
                   value="Set Icons"
                   readOnly
                 />
-              </form>
             </div>
           </div>
         </div>
