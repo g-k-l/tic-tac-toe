@@ -10,8 +10,13 @@ class Marker extends React.Component {
     if (!this.props.src) {
       return null;
     }
-    return <img className="marker" src={this.props.src}
-     alt="This square is taken!"/>;
+    return (
+      <img
+        className="marker"
+        src={this.props.src}
+        alt="This square is taken!"
+      />
+    );
   }
 }
 
@@ -106,7 +111,7 @@ class Board extends React.Component {
       alert("Game is over!");
       return;
     } else if (this.state.history.length === 0) {
-      alert("No history to undo =\\")
+      alert("No history to undo =\\");
     }
     var current_history = this.state.history.slice();
     const updated_history = this.state.history.slice(0, -1);
@@ -127,12 +132,12 @@ class Board extends React.Component {
     if (this.state.winner) {
       status = "Winner: ".concat(this.state.winner);
     } else {
-      status = "Next player: ".concat(this.currentTurn());
+      status = "Next Player: ".concat(this.currentTurn());
     }
     let rangeArr = range(this.state.size);
     return (
       <div>
-        <div className="status">{status}</div>
+        <div>{status}</div>
         {rangeArr.map(rowNumber => this.renderRow(rowNumber))}
         <div>
           <OptionButton handleClick={this.handleUndo} name="Undo" />
@@ -178,12 +183,10 @@ class Game extends React.Component {
           hideModal={this.hideModal}
         />
         <div className="game">
-          <div className="game-board">
-            <Board
-              size={this.state.size}
-              handleRestart={this.showGameResetModal}
-            />
-          </div>
+          <Board
+            size={this.state.size}
+            handleRestart={this.showGameResetModal}
+          />
         </div>
       </div>
     );
@@ -197,10 +200,10 @@ class GameSetup extends React.Component {
       started: false,
       size: 3,
       modalName: null,
-      modalAction: null,
+      modalAction: null
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.goBackToTop = this.goBackToTop.bind(this);
 
     this.handleSetIcons = this.handleSetIcons.bind(this);
@@ -212,12 +215,11 @@ class GameSetup extends React.Component {
     this.setState({ size: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleStart() {
     const input_size = parseInt(this.state.size, 10);
 
     if (isNaN(input_size)) {
       alert("Please enter a number >:(");
-      event.preventDefault();
       return;
     }
 
@@ -228,12 +230,10 @@ class GameSetup extends React.Component {
           " by " +
           MAX_BOARD_SIZE
       );
-      event.preventDefault();
       return;
     }
 
     this.setState({ started: true, size: input_size });
-    event.preventDefault();
   }
 
   goBackToTop() {
@@ -241,7 +241,7 @@ class GameSetup extends React.Component {
   }
 
   handleSetIcons(icons) {
-    switch (icons){
+    switch (icons) {
       case "xo":
         SquareRenderer.renderValue = SquareRenderer.asXO;
         break;
@@ -273,36 +273,57 @@ class GameSetup extends React.Component {
   render() {
     if (this.state.started) {
       return (
-        <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+        <div className="tic-tac-toe">
+          <div class="bg"></div>
+          <div className="game-header">
+            <h1>Tic-Tac-Toe</h1>
+          </div>
+          <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+        </div>
       );
     } else {
       return (
-        <div className="game-setup">
-        <ModalConductor
-          modalName={this.state.modalName}
-          modalAction={this.state.modalAction}
-          hideModal={this.hideModal}
-        />
-          Please Select the Board Size
-          <form onSubmit={this.handleSubmit}>
-            <div className="board-size">
-              <input
-                className="text-box"
-                type="text"
-                value={this.state.size}
-                onChange={this.handleChange}
+        <div className="tic-tac-toe">
+          <div className="bg"></div>
+          <div className="game-header">
+            <h1>Tic-Tac-Toe</h1>
+          </div>
+          <div>
+            <div className="game-setup">
+              <ModalConductor
+                modalName={this.state.modalName}
+                modalAction={this.state.modalAction}
+                hideModal={this.hideModal}
               />
-              by
-              <input
-                className="text-box"
-                type="text"
-                value={this.state.size}
-                onChange={this.handleChange}
-              />
+                <div className="board-size">
+                  <input
+                    className="size-box"
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                  />
+                  by
+                  <input
+                    className="size-box"
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <input
+                  className="button"
+                  type="submit"
+                  onClick={this.handleStart}
+                  value="Play" />
+                <input
+                  className="button"
+                  type="submit"
+                  onClick={this.showSetIconsModal}
+                  value="Set Icons"
+                  readOnly
+                />
             </div>
-            <input className="button" type="submit" value="Submit" />
-            <input className="button" onClick={this.showSetIconsModal} value="Set Icons" readOnly />
-          </form>
+          </div>
         </div>
       );
     }
