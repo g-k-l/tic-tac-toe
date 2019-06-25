@@ -22,8 +22,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "query-string": "^6.8.1",
-    "react-router-dom": "^5.0.1"
-  }
+  "devDependencies": {}
 }
