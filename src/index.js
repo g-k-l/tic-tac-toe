@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import GameSetup from "./TicTacToe/TicTacToe.js";
+import GameSetup from "./TicTacToe.js";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.css";
 
