@@ -7,6 +7,10 @@ body {
     animation: fadein 1s;
     font-family: "Century Gothic", Futura, serif;
     letter-spacing: 0.5px;
+    margin: 0 auto;
+    padding: 0px 15px 0px 15px;
+    max-width: 800px;
+    max-height: 1200px;
 }
 
 input {
@@ -33,7 +37,5 @@ h2 a {
 }
 
 .content {
-    margin: 0 auto;
-    max-width: 900px;
-    max-height: 700px;
+
 }

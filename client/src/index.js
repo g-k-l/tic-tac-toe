@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import GameSetup from "./TicTacToe/TicTacToe.js";
 import Multitaskit from "./Multitaskit/Multitaskit.js";
 import registerServiceWorker from "./registerServiceWorker";
@@ -23,17 +23,25 @@ const About = () => {
     <div>
       <h3>[Under Construction]</h3>
     </div>
-  )
-}
+  );
+};
+
+const NotFound = () => {
+  return (
+    <div>
+      <h3>Oops, not found!</h3>
+    </div>
+  );
+};
 
 const AppRouter = () => {
   return (
     <Router>
       <nav>
         <div id="nav1">
-        <h2>
-          <Link to="/">Kevin's Apps</Link>
-        </h2>
+          <h2>
+            <Link to="/">Kevin's Apps</Link>
+          </h2>
         </div>
         <ul>
           <li>
@@ -48,10 +56,13 @@ const AppRouter = () => {
         </ul>
       </nav>
       <div className="content">
-        <Route path="/" exact component={App} />
-        <Route path="/about/" exact component={About} />
-        <Route path="/tic-tac-toe/" component={GameSetup} />
-        <Route path="/multi/" component={Multitaskit} />
+        <Switch>
+          <Route path="/" exact component={App} />
+          <Route path="/about/" exact component={About} />
+          <Route path="/tic-tac-toe/" component={GameSetup} />
+          <Route path="/multi/" component={Multitaskit} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     </Router>
   );
