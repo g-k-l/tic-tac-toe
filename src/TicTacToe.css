@@ -22,8 +22,11 @@
 }
 
 .tic-tac-toe .button:hover {
+  box-shadow: 0 4px 6px rgb(0, 0, 0, 0.4);
+}
+
+.tic-tac-toe .button:active {
   transform: scale(1.2);
-  box-shadow: 0 4px 6px rgb(0, 0, 0, 0.2);
 }
 
 .bg {
