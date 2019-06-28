@@ -1,6 +1,7 @@
 import "./modals.css";
 import React from "react";
-import { RESET_MODAL_NAME, SET_ICONS_MODAL_NAME } from "../constants";
+import { RESET_MODAL_NAME, SET_ICONS_MODAL_NAME,
+         ONE_MORE_MODAL_NAME } from "../constants";
 import XLogo from "../assets/logo_x.svg";
 import hackLogo from "../assets/logo_hack.svg";
 import reactLogo from "../assets/logo_react.svg";
@@ -29,6 +30,14 @@ class ModalConductor extends React.Component {
           <ResetModal
             modalAction={this.props.modalAction}
             hideModal={this.props.hideModal}
+          />
+        );
+      case ONE_MORE_MODAL_NAME:
+        return (
+          <OneMoreModal
+            modalAction={this.props.modalAction}
+            hideModal={this.props.hideModal}
+            winner={this.props.winner}
           />
         );
       default:
@@ -136,7 +145,35 @@ class ResetModal extends React.Component {
     return (
       <div className="backdrop">
         <div className="modal">
-          <div className="reset-modal-guts">Go Back to Top?</div>
+          <div className="reset-modal-guts">
+            Go Back to Top?
+          </div>
+          <input
+            className="button"
+            type="submit"
+            value="Yes"
+            onClick={this.props.modalAction}
+          />
+          <input
+            className="button"
+            type="submit"
+            value="No"
+            onClick={this.props.hideModal}
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+class OneMoreModal extends React.Component {
+  render() {
+    return (
+      <div className="backdrop">
+        <div className="modal">
+          <div className="one-more-modal-guts">
+            {this.props.winner} has won! One more?
+          </div>
           <input
             className="button"
             type="submit"
