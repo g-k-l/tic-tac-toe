@@ -3,7 +3,9 @@ import "./TicTacToe.css";
 import { calculateWinner, range } from "./utils.js";
 import SquareRenderer from "./assets/renderUtils.js";
 import ModalConductor from "./modals/ModalConductor.js";
-import { MAX_BOARD_SIZE, RESET_MODAL_NAME } from "./constants.js";
+import { MAX_BOARD_SIZE, RESET_MODAL_NAME,
+         ONE_MORE_MODAL_NAME } from "./constants.js";
+
 
 class Marker extends React.Component {
   render() {
@@ -44,17 +46,23 @@ class OptionButton extends React.Component {
 }
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      size: this.props.size,
-      squares: Array(this.props.size * this.props.size).fill(null),
+
+  initialState(size) {
+    return {
+      size: size,
+      squares: Array(size * size).fill(null),
       history: [],
       xIsNext: true,
       winner: null
     };
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = this.initialState(this.props.size);
     this.handleUndo = this.handleUndo.bind(this);
   }
+
 
   renderRow(rowNumber) {
     let rowRangeArr = range(this.state.size);
@@ -98,6 +106,11 @@ class Board extends React.Component {
     }
 
     const winner = calculateWinner(squares);
+    if (winner) {
+      this.props.handleOneMore(winner, () => {
+        this.setState(this.initialState(this.props.size));
+      });
+    }
     this.setState({
       squares: squares,
       history: updated_history,
@@ -129,12 +142,12 @@ class Board extends React.Component {
 
   render() {
     let status;
+    let rangeArr = range(this.state.size);
     if (this.state.winner) {
       status = "Winner: ".concat(this.state.winner);
     } else {
       status = "Next Player: ".concat(this.currentTurn());
     }
-    let rangeArr = range(this.state.size);
     return (
       <div>
         <div>{status}</div>
@@ -154,9 +167,12 @@ class Game extends React.Component {
     this.state = {
       size: this.props.size,
       modalName: null,
-      modalAction: null
+      modalAction: null,
+      winner: null,
     };
     this.showGameResetModal = this.showGameResetModal.bind(this);
+    this.showOneMoreModal = this.showOneMoreModal.bind(this);
+    this.handleRestart = this.handleRestart.bind(this);
     this.hideModal = this.hideModal.bind(this);
   }
 
@@ -167,11 +183,28 @@ class Game extends React.Component {
     });
   }
 
+  showOneMoreModal(winner, callback) {
+    this.setState({
+      modalName: ONE_MORE_MODAL_NAME,
+      modalAction: () => {
+        this.handleRestart();
+        callback()
+      },
+      winner: winner,
+    });
+    callback();
+  }
+
   hideModal(event) {
     this.setState({
       modalName: null,
-      modalAction: null
+      modalAction: null,
     });
+  }
+
+  handleRestart(callback) {
+    this.hideModal();
+    this.props.handleStart();
   }
 
   render() {
@@ -181,11 +214,13 @@ class Game extends React.Component {
           modalName={this.state.modalName}
           modalAction={this.state.modalAction}
           hideModal={this.hideModal}
+          winner={this.state.winner}
         />
         <div className="game">
           <Board
             size={this.state.size}
             handleRestart={this.showGameResetModal}
+            handleOneMore={this.showOneMoreModal}
           />
         </div>
       </div>
@@ -274,11 +309,15 @@ class GameSetup extends React.Component {
     if (this.state.started) {
       return (
         <div className="tic-tac-toe">
-          <div class="bg"></div>
+          <div className="bg"></div>
           <div className="game-header">
             <h1>Tic-Tac-Toe</h1>
           </div>
-          <Game size={this.state.size} handleGoBackToTop={this.goBackToTop} />
+          <Game 
+            size={this.state.size}
+            handleGoBackToTop={this.goBackToTop}
+            handleStart={this.handleStart}
+           />
         </div>
       );
     } else {
