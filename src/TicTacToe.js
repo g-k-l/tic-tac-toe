@@ -108,7 +108,6 @@ class Board extends React.Component {
     const winner = calculateWinner(squares);
     if (winner) {
       this.props.handleOneMore(winner, () => {
-        console.log("wtf");
         this.setState(this.initialState(this.props.size));
       });
     }
@@ -204,7 +203,6 @@ class Game extends React.Component {
   }
 
   handleRestart(callback) {
-    console.log("balls");
     this.hideModal();
     this.props.handleStart();
   }
